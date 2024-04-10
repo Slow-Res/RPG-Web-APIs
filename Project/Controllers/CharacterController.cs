@@ -7,7 +7,7 @@ namespace Project.Controllers
     [Route("/[controller]")]
     public class CharacterController : ControllerBase
     {
-        
+        private static List<string> events = new();
         private static List<Character> _characters = new()
         {
             new (),
@@ -19,16 +19,33 @@ namespace Project.Controllers
 
         [HttpGet]
         [Route("/[controller]s")]
-        public ActionResult<List<Character>> GetAll() => Ok(_characters);
+        public ActionResult<List<Character>> GetAll() 
+        { 
+            events.Add($"Fetching All Characters @ {DateTime.Now}");
+            return Ok(_characters);
+        }
 
-        [HttpGet]        
+        [HttpGet]
+        [Route("/[controller]/events")]
+        public ActionResult<List<string>> Events()
+        {
+            return Ok(events);
+        }
+
+        [HttpGet]
         [Route("/[controller]/{id}")]
         public ActionResult<Character> GetOne(int id) {
-
+            events.Add($"Fetching a single Character with id: #{id} @ {DateTime.Now}");
             var charcter = _characters.FirstOrDefault<Character>(  c => c.Id == id);
             return Ok(charcter);
+        }
 
-        } 
-
+        [HttpPost]
+        [Route("/[controller]")]
+        public ActionResult<Character> AddOne(Character chr) {
+            events.Add($"Added a  new single Character with id: #{chr.Id} @ {DateTime.Now}");
+            _characters.Add(chr);
+            return Ok(chr);
+        }
     }
 }
