@@ -11,6 +11,7 @@ namespace Project
             CreateMap<Character,GetCharacterDTO>();
             CreateMap<AddCharacterDTO,Character>();
             CreateMap<UpdateCharacterDTO,Character>();
+            CreateMap<UpdateCharacterDTO,GetCharacterDTO>();
         }
     }
 }
