@@ -27,13 +27,11 @@ namespace Project.Migrations
                 {
                     table.PrimaryKey("PK_Characters", x => x.Id);
                 });
-                migrationBuilder.AddColumn<int>(name:"TEST", table:"Characters" );
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn("TEST", "Characters");
             migrationBuilder.DropTable(
                 name: "Characters");
         }

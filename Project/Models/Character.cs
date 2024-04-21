@@ -8,9 +8,10 @@ namespace Project.Controllers
         public int Strength { get; set; } = 10;
         public int Defense { get; set; } = 10;
         public int Intelligence { get; set; } = 10;
-        public int TEST { get; set; } = 10;
 
         public RPGClass Class { get; set; } = RPGClass.Knight;
+
+        public User? User { get; set; }
 
     }
 }
