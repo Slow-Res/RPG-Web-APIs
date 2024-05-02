@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Project.DTOs.Character;
@@ -6,6 +7,7 @@ using Project.Services.CharacterServices;
 
 namespace Project.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("/[controller]")]
     public class CharacterController : ControllerBase
@@ -22,6 +24,7 @@ namespace Project.Controllers
         [Route("/[controller]s")]
         public async Task<ActionResult<ServiceResponse<List<GetCharacterDTO>>>> GetAll()
         { 
+            
             events.Add($"Fetching All Characters @ {DateTime.Now}");
             return Ok( await _characterServices.GetAll());
         }
@@ -65,5 +68,13 @@ namespace Project.Controllers
             if(results.Data is null) return NotFound(results);
             return Ok(results);
         }
+
+        [HttpPost]
+        [Route("Skill")]
+        public async Task<ActionResult<ServiceResponse<GetCharacterDTO>>> AddCharacterSkill(AddCharacterSkillDTO characterSkill)
+        {
+            return Ok(await _characterServices.AddCharacterSkill(characterSkill));
+        }
+
     }
 }

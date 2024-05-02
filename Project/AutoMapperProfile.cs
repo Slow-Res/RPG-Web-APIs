@@ -1,6 +1,8 @@
 using AutoMapper;
 using Project.Controllers;
 using Project.DTOs.Character;
+using Project.DTOs.Skill;
+using Project.DTOs.WeaponDTOs;
 
 namespace Project
 {
@@ -12,6 +14,10 @@ namespace Project
             CreateMap<AddCharacterDTO,Character>();
             CreateMap<UpdateCharacterDTO,Character>();
             CreateMap<UpdateCharacterDTO,GetCharacterDTO>();
+            CreateMap<Weapon, GetWeaponDTO>();
+            CreateMap<AddWeaponDTO,Weapon>();
+            CreateMap<Skill, GetSkillDTO>();
+
         }
     }
 }
