@@ -12,7 +12,8 @@ namespace Project.Data
 
 
         public AuthRepository(DataContext context, IConfiguration configuration)
-        {
+        {   
+            // test
             _context = context;
             _configuration = configuration;
 
